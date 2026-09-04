@@ -3,6 +3,10 @@
     "arcjet": {
       "type": "http",
       "url": "https://api.arcjet.com/mcp"
+    },
+    "Prisma": {
+      "type": "http",
+      "url": "https://mcp.prisma.io/mcp"
     }
   }
 }

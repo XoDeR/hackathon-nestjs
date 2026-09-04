@@ -1,6 +1,8 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
-import arcjet, { shield, detectBot, type ArcjetDecision } from '@arcjet/node';
+import arcjet, { shield, fixedWindow, type ArcjetDecision } from '@arcjet/node';
 import type { IncomingMessage } from 'node:http';
+
+import 'dotenv/config';
 
 type ArcjetMode = 'LIVE' | 'DRY_RUN';
 
@@ -16,12 +18,14 @@ export class ArcjetService implements OnModuleInit {
     }
 
     const mode: ArcjetMode = process.env.ARCJET_MODE === 'LIVE' ? 'LIVE' : 'DRY_RUN';
+    const window = process.env.ARCJET_RATE_LIMIT_WINDOW ?? '1m';
+    const max = Number(process.env.ARCJET_RATE_LIMIT_MAX ?? 60);
 
     this.client = arcjet({
       key,
       rules: [
         shield({ mode }),
-        detectBot({ mode, allow: ['CATEGORY:SEARCH_ENGINE'] }),
+        fixedWindow({ mode, window, max }),
       ],
     });
   }

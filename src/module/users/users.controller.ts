@@ -31,6 +31,8 @@ export class UsersController {
   }
 
   @Get(':id')
+  @Roles(Role.ADMIN)
+  @UseGuards(RolesGuard)
   getById(@Param('id') id: string) {
     return this.usersService.findById(id);
   }

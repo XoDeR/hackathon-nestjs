@@ -1,5 +1,6 @@
 import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { Session, type UserSession } from '@thallesp/nestjs-better-auth';
+import { ResponseMessage } from '../../common/decorators/response-message.decorator.js';
 import { Roles } from '../../common/decorators/roles.decorator.js';
 import { RolesGuard } from '../../common/guards/roles.guard.js';
 import { Role } from '../../generated/prisma/enums.js';
@@ -26,6 +27,7 @@ export class UsersController {
   @Get('all')
   @Roles(Role.ADMIN)
   @UseGuards(RolesGuard)
+  @ResponseMessage('Fetch all users')
   getAll() {
     return this.usersService.findAll();
   }

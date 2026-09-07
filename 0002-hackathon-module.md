@@ -33,3 +33,7 @@ Use @Type(() => Date) to transform date strings
 ## Resource
 
 build the hackathons crud service and controller
+
+use auth guards and roles from nestjs-better-auth package
+
+add a response message on write operations

@@ -7,9 +7,10 @@ import { PrismaModule } from './lib/database/prisma.module.js';
 import { AuthModule } from './lib/auth/auth.module.js';
 import { UsersModule } from './module/users/users.module.js';
 import { ArcjetGuard } from './common/guards/arcjet.guard.js';
+import { HackathonsModule } from './module/hackathons/hackathons.module.js';
 
 @Module({
-  imports: [ArcjetModule, PrismaModule, AuthModule, UsersModule],
+  imports: [ArcjetModule, PrismaModule, AuthModule, UsersModule, HackathonsModule],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: ArcjetGuard }],
 })

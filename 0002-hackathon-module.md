@@ -13,3 +13,10 @@ isActive, and belongs to a User author.
 HackathonParticipant tracks which user joined which hackathon with a unique constraint on hackathonId + userId
 
 run db:format, db:migrate and db:generate
+
+## Global validation
+
+Install class-validator and class-transformer.
+Setup the global validation pipe in main.ts that returns clean 
+validation errors as an array of {property, message} objects
+using BadRequest exception.
